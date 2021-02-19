@@ -1,8 +1,9 @@
 // import axios from 'axios';
 import React, { useState, useEffect } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Row, Col } from 'react-bootstrap'
 import API from '../utils/API'
-import Book from '../components/book'
+  import Book from '../components/book'
+
 
 const Search = () => {
   const [search, SetSearch] = useState('');
@@ -22,15 +23,6 @@ const Search = () => {
     .catch(err => console.log(err))
   };
 
-  const displayBooks = () => {
-    books.map((book, i) => (
-        <div key={i}>
-        <Book 
-        />
-      </div>
-    ))
-  }
-
   return (
     <div>
       <h1>Search Books!</h1>
@@ -45,6 +37,19 @@ const Search = () => {
         >
         </Form.Control>
         <Button variant='primary' onClick={submitHandler}>Search</Button>
+        {books.map((book, i) => (
+          <Row key={i} className='border p-3'>
+            <Col sm={4}>
+              <img src={book.volumeInfo.imageLinks?.thumbnail} alt=''></img>
+            </Col>
+          <Col sm={8}>
+        <h3>{book.volumeInfo.title}</h3>
+        <p>{book.volumeInfo.authors?.join(', ')}</p>
+        <p>{book.volumeInfo.description}</p>
+        <a href={book.volumeInfo.infoLink}>More Info</a>
+          </Col>
+          </Row>
+        ))}
       </Form.Group>
       </Form>
     </div>
