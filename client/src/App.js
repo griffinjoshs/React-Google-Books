@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
 import axios from 'axios'
+import Search from "./pages/Search";
 
 function App() {
   const [msg, setMsg] = useState("loading...");
@@ -13,6 +14,7 @@ function App() {
     <div className="App">
      
 <h2>Message from backend{msg}</h2>
+<Search/>
     </div>
   );
 }
