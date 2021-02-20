@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import './App.css';
 import axios from 'axios'
 import Search from "./pages/Search";
+import Saved from "./pages/Saved";
+
 
 function App() {
   const [msg, setMsg] = useState("loading...");
@@ -11,11 +14,16 @@ function App() {
       .then((res) => setMsg(res.data.message));
   }, []);
   return (
-    <div className="App">
-     
-<h2>Message from backend{msg}</h2>
-<Search/>
-    </div>
+    <Router className="App">   
+<Switch>
+  <Route exact path='/'>
+  <Search/>
+  </Route>
+  <Route path='/saved'>
+  <Saved/>
+  </Route>
+</Switch>
+    </Router>
   );
 }
 
