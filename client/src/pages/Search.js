@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import API from "../utils/API";
 import Book from "../components/book";
+import '../styles/Search.css'
 
 const Search = () => {
   const [search, SetSearch] = useState("");
@@ -56,22 +57,32 @@ const Search = () => {
 
   return (
     <div>
-      <h1>Search Books!</h1>
-      <Form>
+      <h1 className='text-center'>Search For A Book!</h1>
+      <br></br>
+      <a id='savedPage' href='/saved'>Saved Books</a>
+      <br></br>
+      <br></br>
+      <Form className='form'>
         <Form.Group>
+          <div id='inputSec'>
           <Form.Control
             type="search"
             placeholder="Search"
             name="search"
+            id='search'
             onChange={(e) => SetSearch(e.target.value)}
             value={search}
           ></Form.Control>
           <Button variant="primary" onClick={submitHandler}>
             Search
           </Button>
+          </div>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
           {books.map((book, i) => (
             <Row key={i} className="border p-3">
-              <a href='/saved'>Saved Books</a>
               <Col sm={4}>
                 <h3>{book.volumeInfo.title}</h3>
                 <p>{book.volumeInfo.authors?.join(", ")}</p>
@@ -82,7 +93,7 @@ const Search = () => {
               <Col sm={8}>
               <a className='btn btn-secondary' href={book.volumeInfo.infoLink}>View</a>
 
-                <button variant="primary ml-3" onClick={(e) => {saveBook(e, book)}}>
+                <button variant="primary ml-3" className='button' onClick={(e) => {saveBook(e, book)}}>
                   Save
                 </button>
                 <p>{book.volumeInfo.description}</p>
